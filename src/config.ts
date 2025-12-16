@@ -13,11 +13,12 @@ export const SITE = {
   showBackButton: true, // show back button in post detail
   editPost: {
     enabled: true,
-    text: "Edit page",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    text: "勘誤 / 編輯此頁", // 中文化
+    url: "https://github.com/marco167620/tohot-xyz/edit/main/src/data/blog",
+    appendFilePath: true, // [重要] 確保連結能精準指向檔案
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"
-  lang: "zh-tw", // html lang code. Set this empty and default will be "en"
-  timezone: "Asia/Bangkok", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  lang: "zh-TW", // html lang code. Set this empty and default will be "en"
+  timezone: "Asia/Taipei", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 } as const;
