@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "跨越虛實邊界：探索Web3.0與AI賦能的永續藍圖"
+title: "跨越虛實邊界：探索AI賦能與Web3.0的永續藍圖"
 ogImage: "/assets/about-cover.jpg"
 description: "未來的技術樣貌我們或許無法現在就全盤斷定，但我深信：數位身分識別 (DID)、去中心化治理 (DAO) 以及 AI 驅動的數位轉型，是通往未來的必經之路。"
 ---

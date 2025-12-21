@@ -1,6 +1,6 @@
 ---
 author: Marco
-pubDatetime: 2025-12-21T15:30:00Z
+pubDatetime: 2025-12-20T15:30:00Z
 title: 如果你能用 AI 秒殺作業，那我們為什麼還要上課？
 postSlug: hello-world
 featured: true
