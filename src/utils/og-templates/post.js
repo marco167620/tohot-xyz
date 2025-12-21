@@ -3,12 +3,12 @@ import satori from "satori";
 import { SITE } from "@/config";
 
 export default async post => {
-  // 🟢 1. 改用 Google Fonts GitHub 官方倉庫的 "Static" (靜態完整版)
-  // 這裡的 /static/ 目錄下存放的是未經切割的完整 TTF 檔案，保證有標點符號
-  const fontRegularURL = "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/static/NotoSansTC-Regular.ttf";
-  const fontBoldURL =    "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/static/NotoSansTC-Bold.ttf";
+  // 🟢 使用 Adobe 官方倉庫的 Source Han Sans TC (思源黑體) OTF 版本
+  // 經過測試，這個連結是有效的
+  const fontRegularURL = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Regular.otf";
+  const fontBoldURL    = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Bold.otf";
 
-  // 🟢 2. 下載字體
+  // 下載字體
   const fontRegular = await fetch(fontRegularURL).then((res) => res.arrayBuffer());
   const fontBold = await fetch(fontBoldURL).then((res) => res.arrayBuffer());
 
@@ -23,8 +23,8 @@ export default async post => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // 🟢 3. 明確指定字體系列
-          fontFamily: '"Noto Sans TC"',
+          // 🟢 明確指定字體名稱，確保對應到下方 fonts 設定
+          fontFamily: '"Source Han Sans TC"',
         },
         children: [
           {
@@ -143,13 +143,13 @@ export default async post => {
       embedFont: true,
       fonts: [
         {
-          name: "Noto Sans TC",
+          name: "Source Han Sans TC", // 這裡的名字要跟上面的 fontFamily 對應
           data: fontRegular,
           weight: 400,
           style: "normal",
         },
         {
-          name: "Noto Sans TC",
+          name: "Source Han Sans TC",
           data: fontBold,
           weight: 700,
           style: "normal",
