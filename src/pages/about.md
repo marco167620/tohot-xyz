@@ -1,37 +1,30 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "跨越虛實邊界：探索Web3.0與AI賦能的永續藍圖"
+ogImage: "/assets/about-cover.jpg"
+description: "未來的技術樣貌我們或許無法現在就全盤斷定，但我深信：數位身分識別 (DID)、去中心化治理 (DAO) 以及 AI 驅動的數位轉型，是通往未來的必經之路。"
 ---
+#### Web 1.0 拓荒者於技術佈道的起點
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+二十多年前，我出版了《FrontPage 98 專家秘笈》。那時網際網路剛剛起步，身為台灣早期的 Web 先行者，我背負著知名外商品牌的光環，熱切地教導人們如何從 HTML 的「烘焙雞（Homepage）」時代，跨入視覺化建站的新領域。那是 Web 1.0 的拓荒時代，也是我作為技術佈道者的起點——致力於降低技術門檻，讓更多人能在網路上發聲。
+![Marco 的帥氣照片](/assets/about-cover.jpg)
 
-![Astro Paper](public/astropaper-og.jpg)
+#### AI 與 Web 3.0 匯流已蓄勢待發
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+隨著技術演進，我沒有止步於對新興科技的探索。在我的博士研究生涯中，我深入鑽研 3D 建模、模糊理論、類神經網路，並最終聚焦於區塊鏈技術。在我的博士論文中，我提出了前瞻性的架構：將以太坊與智慧合約應用於「建築物生產履歷」。我設計了一套第三方認證流程，將驗證的 Metadata 和認證紀錄，透過智慧合約永久儲存於區塊鏈上，並配合前端體驗，讓冰冷的建築數據轉化為可信任的履歷網站。
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+我認為區塊鏈帶來的「去中心化」契機，並不意味著要完全取代中心化；相反的，中心化與去中心化的應用將在未來同時存在、彼此競合，這正是數位治理的精髓所在。
 
-## Features
+2023年，生成式 AI (GenAI) 的興起，讓我們能以自然語言向 AI 取得解答；而巨量資料 (Big Data) 則利用分散式架構，處理無所不在的結構化與非結構化資料，提供即時決策依據。當 AI 的「智慧」遇上 Web 3.0 的「信任」，我們的數位應用正向前邁進重要的一步。
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+#### 教學現場的微型 DAO 實驗
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+我在淡江大學開課，講授「Web 3.0 的創新與應用」以及「Web3 實務與應用」，前者著重在創新，後者著重要實務。在課程中，我設計 dApp 讓學生實現領取課程代幣的體驗，以及利用 AI 開發後端智慧合變和前端的使用者介面，參與微去中心化治理，在區塊鏈上互評期末專案，領取 NFT 課程紀念徽章。這是一場人機協作模式的小型社會實驗。
 
-and so much more.
+然而，數位轉型更應為了永續。這正是本實驗室拋出 ESG 議題的初衷：我們希望開啟對話，探討數位技術如何回應環境 (E)、社會 (S) 和治理 (G) 的挑戰。希望能藉此吸引擁有相同理念的夥伴，在這個開放的場域中共同激盪，為創造美好的未來凝聚新共識。
 
-## Show your support
+#### 共創未來的數位契約
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+未來的技術樣貌我們或許無法現在就全盤斷定，但我深信：數位身分識別 (DID)、去中心化治理 (DAO) 以及 AI 驅動的數位轉型，是通往未來的必經之路。
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+於是，我著手規劃「馬可博土的數位治理實驗室」。無論您是學生、開發者、研究者，還是關心未來的決策者，誠摯邀請您加入這場關於未來的對話與實驗。

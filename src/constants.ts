@@ -18,26 +18,35 @@ interface Social {
 
 export const SOCIALS: Social[] = [
   {
+    name: "Facebook",
+    href: "https://www.facebook.com/marcolee1107", // 請修改這裡
+    linkTitle: `${SITE.title} on Facebook`,
+    icon: IconFacebook,
+  },
+  {
     name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "https://github.com/marco167620/tohot-xyz",
     linkTitle: `${SITE.title} on GitHub`,
     icon: IconGitHub,
   },
+  /*
   {
     name: "X",
-    href: "https://x.com/username",
+    href: "https://x.com/marcolee1107",
     linkTitle: `${SITE.title} on X`,
     icon: IconBrandX,
   },
+  
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
+    href: "https://www.linkedin.com/in/marcolee1107/",
     linkTitle: `${SITE.title} on LinkedIn`,
     icon: IconLinkedin,
   },
+  */
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:marcolee1107@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
   },

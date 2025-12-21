@@ -70,17 +70,22 @@ const isActive = (path: string) => {
         >
           <li class="col-span-2">
             <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
-              Posts
+              文章
             </a>
           </li>
           <li class="col-span-2">
             <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-              Tags
+              標籤
             </a>
           </li>
           <li class="col-span-2">
             <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
-              About
+              緣起
+            </a>
+          </li>
+          <li class="col-span-2">
+            <a href="/guide.html" target="_blank" class="hover:text-skin-accent">
+              資源
             </a>
           </li>
           {
@@ -95,10 +100,10 @@ const isActive = (path: string) => {
                     },
                   ]}
                   ariaLabel="archives"
-                  title="Archives"
+                  title="歷史歸檔"
                 >
                   <IconArchive class="hidden sm:inline-block" />
-                  <span class="sm:sr-only">Archives</span>
+                  <span class="sm:sr-only">歷史歸檔</span>
                 </LinkButton>
               </li>
             )
@@ -111,10 +116,10 @@ const isActive = (path: string) => {
                 { "[&>svg]:stroke-accent": isActive("/search") },
               ]}
               ariaLabel="search"
-              title="Search"
+              title="搜尋"
             >
               <IconSearch />
-              <span class="sr-only">Search</span>
+              <span class="sr-only">搜尋</span>
             </LinkButton>
           </li>
           {
@@ -123,7 +128,7 @@ const isActive = (path: string) => {
                 <button
                   id="theme-btn"
                   class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent"
-                  title="Toggles light & dark"
+                  title="切換深色/淺色模式"
                   aria-label="auto"
                   aria-live="polite"
                 >

@@ -1,0 +1,41 @@
+name: Deploy Astro Site to FTP
+
+on:
+  push:
+    branches:
+      - main  # 監聽 main 分支，一有 push 就執行
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 下載你的程式碼
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      # 2. 安裝 Node.js 環境
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 使用較新的 Node 版本
+
+      # 3. 安裝套件並打包 (Build)
+      - name: 🔨 Install & Build
+        run: |
+          npm install
+          npm run build
+
+      # 4. 透過 FTP 上傳 dist 資料夾的內容
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Astro 打包後的成品會放在 dist 資料夾
+          local-dir: ./dist/
+          # 上傳到 FTP 的根目錄 (通常 publish@tohot.xyz 已經對應到網站資料夾了)
+          server-dir: ./
+          # 安全設定 (若遇到憑證問題可調整，目前先設為 false 確保相容性)
+          strict: false

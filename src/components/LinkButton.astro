@@ -1,40 +1,44 @@
 ---
 export interface Props {
-  id?: string;
   href: string;
-  class?: string;
+  className?: string;
   ariaLabel?: string;
   title?: string;
   disabled?: boolean;
+  target?: string; // ✅ 支援
+  rel?: string;    // ✅ 支援
+  id?: string;     // ✅ 保留你原本的 id
 }
 
+// [關鍵修正 1]：使用 ...rest 把剩下所有沒列出來的屬性 (包含 target, rel) 全部抓進來
 const {
-  id,
   href,
-  class: className = "",
+  className,
   ariaLabel,
   title,
   disabled = false,
+  ...rest 
 } = Astro.props;
 ---
 
 {
   disabled ? (
     <span
-      id={id}
       class:list={["group inline-block", className]}
       title={title}
       aria-disabled={disabled}
-    >
+      {...rest} >
       <slot />
     </span>
   ) : (
     <a
-      id={id}
-      {href}
-      class:list={["group inline-block hover:text-accent", className]}
+      href={href}
+      class:list={["group inline-block hover:text-skin-accent", className]}
       aria-label={ariaLabel}
       title={title}
+      {...rest} 
+      /* [關鍵修正 2]：這一行 {...rest} 就是魔法所在。
+         它會自動展開變成 target="_blank" rel="noopener noreferrer" */
     >
       <slot />
     </a>

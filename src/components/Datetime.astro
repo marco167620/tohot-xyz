@@ -1,55 +1,50 @@
 ---
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import IconCalendar from "@/assets/icons/IconCalendar.svg";
-import { SITE } from "@/config";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { LOCALE } from "@config";
 
 export interface Props {
-  class?: string;
+  datetime?: string | Date;
+  pubDatetime?: string | Date; // [修復] 增加這個屬性來接住 Frontmatter 傳過來的資料
   size?: "sm" | "lg";
-  timezone: string | undefined;
-  pubDatetime: string | Date;
-  modDatetime: string | Date | undefined | null;
+  className?: string;
+  modDatetime?: string | Date | undefined | null; // 保留定義但不顯示
 }
 
-const {
-  pubDatetime,
-  modDatetime,
-  size = "sm",
-  class: className = "",
-  timezone: postTimezone,
-} = Astro.props;
+const { datetime, pubDatetime, size = "sm", className } = Astro.props;
 
-/* ========== Formatted Datetime ========== */
-const isModified = modDatetime && modDatetime > pubDatetime;
+// [修復 Invalid Date 的關鍵]
+// 判斷順序：優先使用傳入的 datetime，如果沒有，就抓 pubDatetime
+const finalDate = datetime || pubDatetime;
 
-const datetime = dayjs(isModified ? modDatetime : pubDatetime).tz(
-  postTimezone || SITE.timezone
-);
+// 建立日期物件
+const myDatetime = new Date(finalDate);
 
-const date = datetime.format("D MMM, YYYY"); // e.g., '22 Mar, 2025'
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+
+// 格式化為中文日期 (例如：2025年12月16日)
+const formattedDate = myDatetime.toLocaleDateString("zh-TW", dateOptions);
 ---
 
-<div class:list={["flex items-center gap-x-2 opacity-80", className]}>
-  <IconCalendar
-    class:list={[
-      "inline-block size-6 min-w-[1.375rem]",
-      { "scale-90": size === "sm" },
-    ]}
-  />
-  {
-    isModified && (
-      <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
-        Updated:
-      </span>
-    )
-  }
-  <time
-    class:list={["text-sm", { "sm:text-base": size === "lg" }]}
-    datetime={datetime.toISOString()}>{date}</time
+<div class={`flex items-center space-x-2 opacity-80 ${className}`}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class={`${
+      size === "sm" ? "scale-90" : "scale-100"
+    } inline-block h-6 w-6 min-w-[1.375rem] fill-skin-base`}
+    aria-hidden="true"
   >
+    <path
+      d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"
+    ></path>
+    <path
+      d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"
+    ></path>
+  </svg>
+
+  <span class={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
+    {formattedDate}
+  </span>
 </div>
