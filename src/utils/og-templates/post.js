@@ -3,12 +3,12 @@ import satori from "satori";
 import { SITE } from "@/config";
 
 export default async post => {
-  // 🟢 1. 改用 jsDelivr CDN 的 Noto Sans TC (繁體中文) - TTF 格式
-  // 這是最穩定的格式，能解決 OTF 讀取不到字的問題
-  const fontRegularURL = "https://cdn.jsdelivr.net/fontsource/fonts/noto-sans-tc@latest/chinese-traditional-400-normal.ttf";
-  const fontBoldURL = "https://cdn.jsdelivr.net/fontsource/fonts/noto-sans-tc@latest/chinese-traditional-700-normal.ttf";
+  // 🟢 1. 改用 Google Fonts GitHub 官方倉庫的 "Static" (靜態完整版)
+  // 這裡的 /static/ 目錄下存放的是未經切割的完整 TTF 檔案，保證有標點符號
+  const fontRegularURL = "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/static/NotoSansTC-Regular.ttf";
+  const fontBoldURL =    "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/static/NotoSansTC-Bold.ttf";
 
-  // 🟢 2. 分別下載標準與粗體
+  // 🟢 2. 下載字體
   const fontRegular = await fetch(fontRegularURL).then((res) => res.arrayBuffer());
   const fontBold = await fetch(fontBoldURL).then((res) => res.arrayBuffer());
 
@@ -23,7 +23,7 @@ export default async post => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // 🟢 3. 強制指定使用我們下載的字體名稱
+          // 🟢 3. 明確指定字體系列
           fontFamily: '"Noto Sans TC"',
         },
         children: [
