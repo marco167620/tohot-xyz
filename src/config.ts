@@ -3,7 +3,7 @@ export const SITE = {
   author: "Marco Lee",
   profile: "https://tohot.xyz/about",
   desc: "探索 Web3、AI 與 ESG 的永續新共識",
-  title: "馬可博土的數位治理實驗",
+  title: "馬可博土的數位治理實驗室",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 5,
