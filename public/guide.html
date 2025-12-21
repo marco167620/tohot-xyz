@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroPaper 5 完整互動指南 (v2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDFBF7; /* Warm Neutral */
+            color: #2D3748;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; 
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .property { color: #e06c75; }
+        .comment { color: #5c6370; font-style: italic; }
+        .number { color: #d19a66; }
+        .boolean { color: #d19a66; }
+
+        .nav-item.active {
+            border-bottom: 3px solid #D6BCFA;
+            color: #553C9A;
+            font-weight: 700;
+        }
+
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form styling extras */
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4A5568;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .form-input {
+            width: 100%;
+            border-radius: 0.375rem;
+            border: 1px solid #CBD5E0;
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #667EEA;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Cream #FDFBF7, Dark Grey #2D3748) + Professional Indigo accents -->
+    <!-- Application Structure Plan: Same dashboard layout, but "Posts" section is significantly upgraded to reflect AstroPaper 5 specifics (src/data/blog) and full schema. -->
+    <!-- Visualization & Content Choices: Enhanced Frontmatter Builder now includes logic for all optional fields. Path references corrected. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-800 tracking-tight flex items-center">
+                        <i class="fas fa-book-open mr-2 text-indigo-500"></i>
+                        AstroPaper 5 <span class="ml-2 text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full">v5.1 Updated</span>
+                    </span>
+                </div>
+                <div class="hidden sm:flex space-x-8" id="nav-container">
+                    <button class="nav-item active px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="dashboard">總覽</button>
+                    <button class="nav-item px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="posts">新增貼文 (完整版)</button>
+                    <button class="nav-item px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="config">主題配置</button>
+                    <button class="nav-item px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="colors">客製化顏色</button>
+                    <button class="nav-item px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="integrations">整合功能</button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center sm:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden sm:hidden bg-white border-t">
+            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-tab="dashboard">總覽</button>
+            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-tab="posts">新增貼文</button>
+            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-tab="config">主題配置</button>
+            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-tab="colors">客製化顏色</button>
+            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-tab="integrations">整合功能</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="tab-content fade-in block">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">AstroPaper 5 架構總覽</h1>
+                <p class="mt-2 text-lg text-gray-600">
+                    AstroPaper 5 引入了新的檔案結構。雖然它使用了 Content Collections API，但貼文路徑已變更為 <code class="bg-gray-100 px-1 rounded text-red-600">src/data/blog/</code>。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-semibold mb-4 text-gray-800">核心效能指標 (Lighthouse)</h2>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="bg-red-50 p-5 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-folder-open text-red-600 mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-red-900">關鍵路徑變更</h3>
+                                <p class="mt-1 text-sm text-red-700">
+                                    <strong>注意：</strong>在 AstroPaper 5 中，您的 Markdown 文章必須存放在 <code>src/data/blog/</code>，而非標準 Astro 的 <code>src/content/blog/</code>。這是為了支援更靈活的子目錄結構。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 p-5 rounded-lg border-l-4 border-emerald-500">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-emerald-600 mt-1"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-emerald-900">完整 Schema 支援</h3>
+                                <p class="mt-1 text-sm text-emerald-700">
+                                    新的 Frontmatter 支援 <code>modDatetime</code> (修改時間)、<code>ogImage</code> (社群縮圖) 與 <code>editPost</code> (GitHub 編輯連結) 等進階欄位。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POSTS SECTION (UPDATED) -->
+        <section id="posts" class="tab-content fade-in hidden">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">新增貼文 (完整模式)</h1>
+                <p class="mt-2 text-lg text-gray-600">
+                    使用下方的產生器來建立符合 AstroPaper 5 完整規範的 Frontmatter。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <!-- Interactive Builder -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span>Frontmatter 設定</span>
+                        <span class="text-xs font-normal text-gray-500">所有欄位</span>
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Basic Info -->
+                        <div class="bg-gray-50 p-4 rounded-md border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-700 mb-3 border-b pb-1">基本資訊 (必填)</h4>
+                            <div class="space-y-3">
+                                <div class="form-group">
+                                    <label>文章標題 (Title)</label>
+                                    <input type="text" id="post-title" class="form-input" value="AstroPaper 5 完整指南">
+                                </div>
+                                <div class="form-group">
+                                    <label>描述 (Description)</label>
+                                    <textarea id="post-desc" rows="2" class="form-input">這是一篇關於如何使用完整 Frontmatter 的測試文章。</textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="form-group">
+                                        <label>發布時間 (pubDatetime)</label>
+                                        <input type="datetime-local" id="post-date" class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>作者 (Author)</label>
+                                        <input type="text" id="post-author" class="form-input" value="Marco">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEO & Social -->
+                        <div class="bg-blue-50 p-4 rounded-md border border-blue-100">
+                            <h4 class="text-sm font-bold text-blue-800 mb-3 border-b border-blue-200 pb-1">SEO 與社群 (選填)</h4>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="form-group">
+                                        <label>修改時間 (modDatetime)</label>
+                                        <input type="datetime-local" id="post-mod-date" class="form-input">
+                                        <p class="text-xs text-gray-500 mt-1">若文章有更新，建議填寫。</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>自訂網址 (Slug)</label>
+                                        <input type="text" id="post-slug" class="form-input" placeholder="custom-url-path">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>OG 圖片路徑 (ogImage)</label>
+                                    <input type="text" id="post-og" class="form-input" placeholder="assets/my-cover.png">
+                                    <p class="text-xs text-gray-500 mt-1">留空則自動生成圖片。</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>標準網址 (canonicalURL)</label>
+                                    <input type="text" id="post-canonical" class="form-input" placeholder="https://...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Config -->
+                        <div class="bg-purple-50 p-4 rounded-md border border-purple-100">
+                            <h4 class="text-sm font-bold text-purple-800 mb-3 border-b border-purple-200 pb-1">功能開關</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="post-featured" class="h-4 w-4 text-indigo-600 rounded">
+                                    <label for="post-featured" class="mb-0 text-sm">精選文章 (Featured)</label>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="post-draft" class="h-4 w-4 text-indigo-600 rounded">
+                                    <label for="post-draft" class="mb-0 text-sm">草稿 (Draft)</label>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label>標籤 (Tags, 逗號分隔)</label>
+                                <input type="text" id="post-tags" class="form-input" value="astro, guide, v5">
+                            </div>
+                            
+                            <!-- Edit Post Logic -->
+                            <div class="mt-4 pt-3 border-t border-purple-200">
+                                <div class="flex items-center justify-between mb-2">
+                                    <label class="text-sm font-bold text-purple-800">啟用「建議修改」按鈕</label>
+                                    <input type="checkbox" id="post-edit-enable" class="h-4 w-4 text-indigo-600 rounded">
+                                </div>
+                                <div id="edit-post-options" class="hidden space-y-2 pl-2 border-l-2 border-purple-300">
+                                    <div class="form-group">
+                                        <label>Repo URL</label>
+                                        <input type="text" id="post-edit-url" class="form-input text-xs" value="https://github.com/satnaing/astro-paper/edit/main/src/data/blog">
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" id="post-edit-append" class="h-4 w-4" checked>
+                                        <label for="post-edit-append" class="text-xs mb-0">自動附加檔名 (appendFilePath)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Code Preview -->
+                <div class="flex flex-col h-full">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex-grow flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-gray-400 text-xs uppercase tracking-wide">
+                                預覽檔案： <span class="text-yellow-400 font-bold">src/data/blog/</span>my-post.md
+                            </h4>
+                            <button onclick="copyToClipboard()" class="text-xs bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded transition">
+                                <i class="fas fa-copy mr-1"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block text-sm flex-grow relative" id="markdown-preview">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                    
+                    <!-- Steps Reminder -->
+                    <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-yellow-800">重要路徑提醒</h3>
+                                <div class="mt-2 text-sm text-yellow-700">
+                                    <p>請確認您的檔案是建立在 <strong><code>src/data/blog/</code></strong> 目錄下。</p>
+                                    <p class="mt-1">如果您將檔案放在 <code>src/content/blog/</code>，AstroPaper v5 將<strong>無法讀取</strong>到該文章。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIG SECTION -->
+        <section id="config" class="tab-content fade-in hidden">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">主題配置 (config.ts)</h1>
+                <p class="mt-2 text-lg text-gray-600">
+                    全站設定位於 <code>src/config.ts</code>。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Explainer Panel -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-gray-800 mb-2">設定模擬器</h3>
+                        
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">每頁文章數</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300" onclick="updateConfig('posts', -1)">-</button>
+                                <span id="config-posts-val" class="font-mono font-bold">3</span>
+                                <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300" onclick="updateConfig('posts', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-gray-700">顯示閱讀時間</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="config-readtime" class="sr-only peer" checked onchange="updateConfig('readtime')">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Viewer -->
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden">
+                        <div class="bg-gray-800 px-4 py-2 flex items-center">
+                            <span class="text-gray-400 text-xs font-mono">src/config.ts</span>
+                        </div>
+                        <div class="p-6 overflow-x-auto code-block text-sm leading-relaxed" id="config-code-display">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLORS SECTION -->
+        <section id="colors" class="tab-content fade-in hidden">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">客製化顏色方案</h1>
+                <p class="mt-2 text-lg text-gray-600">
+                    修改 <code>src/styles/base.css</code> 中的 CSS 變數。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Color Logic -->
+                <div>
+                    <div class="bg-white p-6 rounded-lg shadow border border-gray-200 mb-6">
+                        <h4 class="font-bold text-gray-800 mb-3">主題預覽</h4>
+                        <div class="flex space-x-4">
+                            <button onclick="setTheme('default')" class="w-12 h-12 rounded-full bg-[#f6f6f6] border-2 border-gray-300 shadow-sm hover:ring-2 ring-indigo-500" title="AstroPaper Default"></button>
+                            <button onclick="setTheme('warm')" class="w-12 h-12 rounded-full bg-[#FDFBF7] border-2 border-orange-200 shadow-sm hover:ring-2 ring-orange-500" title="Warm Paper"></button>
+                            <button onclick="setTheme('dark')" class="w-12 h-12 rounded-full bg-[#1a202c] border-2 border-gray-600 shadow-sm hover:ring-2 ring-gray-500" title="Deep Dark"></button>
+                        </div>
+                    </div>
+
+                    <div class="code-block text-xs" id="css-preview">
+                        <!-- CSS Code populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Live Preview Card -->
+                <div class="flex flex-col items-center justify-center bg-gray-100 rounded-xl p-8 border-dashed border-2 border-gray-300">
+                    <div id="preview-card" class="w-full max-w-md p-6 rounded-lg shadow-lg transition-colors duration-500" style="background-color: var(--theme-bg); color: var(--theme-text);">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--theme-accent);">Featured</span>
+                            <span class="text-xs opacity-70">Dec 17, 2025</span>
+                        </div>
+                        <h2 class="mt-4 text-2xl font-bold" style="color: var(--theme-heading);">
+                            客製化您的 AstroPaper 主題
+                        </h2>
+                        <p class="mt-3 text-sm leading-relaxed opacity-90">
+                            即時預覽：當您更改左側設定時，此卡片的配色會即時更新。
+                        </p>
+                        <button class="mt-6 w-full py-2 px-4 rounded font-bold transition-opacity hover:opacity-90" style="background-color: var(--theme-accent); color: var(--theme-bg);">
+                            閱讀更多
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTEGRATIONS SECTION -->
+        <section id="integrations" class="tab-content fade-in hidden">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">整合功能</h1>
+            </div>
+
+            <div class="space-y-8">
+                <!-- LaTeX -->
+                <div class="bg-white rounded-lg shadow border border-gray-200">
+                    <div class="bg-indigo-600 px-6 py-3 rounded-t-lg">
+                        <h2 class="text-lg font-bold text-white"><i class="fas fa-square-root-alt mr-2"></i> LaTeX 數學公式</h2>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-4">安裝 <code>remark-math</code> 與 <code>rehype-katex</code> 即可支援。</p>
+                        <div class="bg-gray-100 p-3 rounded text-xs font-mono">npm install remark-math rehype-katex</div>
+                    </div>
+                </div>
+
+                <!-- Giscus -->
+                <div class="bg-white rounded-lg shadow border border-gray-200">
+                    <div class="bg-emerald-600 px-6 py-3 rounded-t-lg">
+                        <h2 class="text-lg font-bold text-white"><i class="fas fa-comments mr-2"></i> Giscus 評論</h2>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-4">直接在 <code>src/config.ts</code> 的 <code>GISCUS</code> 物件中填入 repoId 與 categoryId。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 AstroPaper Interactive Guide v2.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Navigation Logic ---
+        const tabs = document.querySelectorAll('.nav-item, #mobile-menu button');
+        const sections = document.querySelectorAll('.tab-content');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function switchTab(tabId) {
+            sections.forEach(sec => sec.classList.add('hidden'));
+            sections.forEach(sec => sec.classList.remove('block'));
+            const target = document.getElementById(tabId);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+            mobileMenu.classList.add('hidden');
+        }
+
+        tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // --- Chart.js ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Performance', 'Accessibility', 'Best Practices', 'SEO'],
+                    datasets: [{
+                        label: 'Lighthouse Score',
+                        data: [100, 100, 100, 100],
+                        backgroundColor: 'rgba(90, 103, 216, 0.6)',
+                        borderColor: 'rgb(90, 103, 216)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, max: 100 } }
+                }
+            });
+
+            // Init
+            updateMarkdownPreview();
+            renderConfigCode();
+            setTheme('default');
+            
+            // Set defaults for dates
+            const now = new Date();
+            const nowStr = new Date(now.getTime() - (now.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+            document.getElementById('post-date').value = nowStr;
+        });
+
+        // --- Interactive Frontmatter Logic ---
+        const postInputs = [
+            'post-title', 'post-desc', 'post-date', 'post-author',
+            'post-mod-date', 'post-slug', 'post-og', 'post-canonical',
+            'post-featured', 'post-draft', 'post-tags',
+            'post-edit-enable', 'post-edit-url', 'post-edit-append'
+        ];
+
+        postInputs.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('input', updateMarkdownPreview);
+        });
+        
+        // Toggle Edit Options visibility
+        document.getElementById('post-edit-enable').addEventListener('change', (e) => {
+            const options = document.getElementById('edit-post-options');
+            if(e.target.checked) options.classList.remove('hidden');
+            else options.classList.add('hidden');
+            updateMarkdownPreview();
+        });
+
+        function updateMarkdownPreview() {
+            // Get Values
+            const title = document.getElementById('post-title').value;
+            const desc = document.getElementById('post-desc').value;
+            const pubDate = document.getElementById('post-date').value;
+            const author = document.getElementById('post-author').value;
+            
+            const modDate = document.getElementById('post-mod-date').value;
+            const slug = document.getElementById('post-slug').value;
+            const ogImage = document.getElementById('post-og').value;
+            const canonical = document.getElementById('post-canonical').value;
+            
+            const featured = document.getElementById('post-featured').checked;
+            const draft = document.getElementById('post-draft').checked;
+            const tags = document.getElementById('post-tags').value.split(',').map(t => t.trim()).filter(t => t);
+            
+            const editEnable = document.getElementById('post-edit-enable').checked;
+            const editUrl = document.getElementById('post-edit-url').value;
+            const editAppend = document.getElementById('post-edit-append').checked;
+
+            // Format Dates
+            const formatISO = (val) => val ? new Date(val).toISOString() : "";
+            const pubDateStr = pubDate ? formatISO(pubDate) : "2025-12-17T00:00:00Z";
+            
+            // Build YAML
+            let yaml = `<span class="comment">---</span>\n`;
+            yaml += `<span class="property">author</span>: <span class="string">${author}</span>\n`;
+            yaml += `<span class="property">pubDatetime</span>: <span class="number">${pubDateStr}</span>\n`;
+            
+            if(modDate) yaml += `<span class="property">modDatetime</span>: <span class="number">${formatISO(modDate)}</span>\n`;
+            
+            yaml += `<span class="property">title</span>: <span class="string">${title}</span>\n`;
+            yaml += `<span class="property">featured</span>: <span class="boolean">${featured}</span>\n`;
+            yaml += `<span class="property">draft</span>: <span class="boolean">${draft}</span>\n`;
+            
+            if(slug) yaml += `<span class="property">slug</span>: <span class="string">${slug}</span>\n`;
+            
+            yaml += `<span class="property">tags</span>:\n${tags.length ? tags.map(t => `  - ${t}`).join('\n') : "  - test"}\n`;
+            
+            if(ogImage) yaml += `<span class="property">ogImage</span>: <span class="string">${ogImage}</span>\n`;
+            if(canonical) yaml += `<span class="property">canonicalURL</span>: <span class="string">${canonical}</span>\n`;
+            
+            yaml += `<span class="property">description</span>:\n  <span class="string">${desc}</span>\n`;
+            
+            if(editEnable) {
+                yaml += `<span class="property">editPost</span>:\n`;
+                yaml += `  <span class="property">url</span>: <span class="string">${editUrl}</span>\n`;
+                yaml += `  <span class="property">text</span>: <span class="string">Suggest Changes on GitHub</span>\n`;
+                yaml += `  <span class="property">appendFilePath</span>: <span class="boolean">${editAppend}</span>\n`;
+            }
+
+            yaml += `<span class="comment">---</span>\n\n`;
+            yaml += `## 目錄\n\n這裡開始撰寫您的 Markdown 內容...`;
+
+            document.getElementById('markdown-preview').innerHTML = yaml.replace(/\n/g, '<br>');
+        }
+
+        function copyToClipboard() {
+            const content = document.getElementById('markdown-preview').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                alert('Frontmatter 已複製！');
+            });
+        }
+
+        // --- Config Section ---
+        let configState = { posts: 3, readtime: true };
+        function updateConfig(key, change) {
+            if (key === 'posts') {
+                configState.posts = Math.max(1, configState.posts + change);
+                document.getElementById('config-posts-val').innerText = configState.posts;
+            } else if (key === 'readtime') {
+                configState.readtime = document.getElementById('config-readtime').checked;
+            }
+            renderConfigCode();
+        }
+        function renderConfigCode() {
+            document.getElementById('config-code-display').innerHTML = `
+<span class="keyword">export const</span> SITE = {
+  <span class="property">website</span>: <span class="string">"https://astro-paper.pages.dev/"</span>,
+  <span class="property">postPerPage</span>: <span class="number">${configState.posts}</span>,
+  <span class="property">showReadingTime</span>: <span class="boolean">${configState.readtime}</span>,
+  <span class="comment">// ...其他設定</span>
+};`;
+        }
+
+        // --- Theme Logic ---
+        const themes = {
+            'default': { bg: '#f6f6f6', text: '#2d2d2d', heading: '#111111', accent: '#111111' },
+            'warm': { bg: '#FDFBF7', text: '#4a4a4a', heading: '#2c3e50', accent: '#e67e22' },
+            'dark': { bg: '#1a202c', text: '#a0aec0', heading: '#f7fafc', accent: '#63b3ed' }
+        };
+        function setTheme(tName) {
+            const t = themes[tName];
+            const card = document.getElementById('preview-card');
+            card.style.setProperty('--theme-bg', t.bg);
+            card.style.setProperty('--theme-text', t.text);
+            card.style.setProperty('--theme-heading', t.heading);
+            card.style.setProperty('--theme-accent', t.accent);
+            
+            document.getElementById('css-preview').innerHTML = `
+<span class="comment">/* src/styles/base.css */</span>
+<span class="keyword">@layer</span> base {
+  <span class="keyword">:root</span> {
+    <span class="property">--color-fill</span>: <span class="number">${hexToRgb(t.bg)}</span>;
+    <span class="property">--color-accent</span>: <span class="number">${hexToRgb(t.accent)}</span>;
+  }
+}`;
+        }
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '';
+        }
+
+    </script>
+</body>
+</html>
