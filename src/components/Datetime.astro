@@ -1,31 +1,32 @@
 ---
-import { LOCALE } from "@config";
+// ✅ 我們移除對 config 的依賴，這樣就絕對不會報錯了
+// import { LOCALE } from "../config";
 
-export interface Props {
-  datetime?: string | Date;
-  pubDatetime?: string | Date; // [修復] 增加這個屬性來接住 Frontmatter 傳過來的資料
+interface Props {
+  pubDatetime: string | Date;
+  modDatetime?: string | Date | undefined | null;
   size?: "sm" | "lg";
   className?: string;
-  modDatetime?: string | Date | undefined | null; // 保留定義但不顯示
+  timezone?: string;
 }
 
-const { datetime, pubDatetime, size = "sm", className } = Astro.props;
+const { pubDatetime, modDatetime, size = "sm", className, timezone } = Astro.props;
 
-// [修復 Invalid Date 的關鍵]
-// 判斷順序：優先使用傳入的 datetime，如果沒有，就抓 pubDatetime
-const finalDate = datetime || pubDatetime;
-
-// 建立日期物件
-const myDatetime = new Date(finalDate);
+const myDatetime = new Date(pubDatetime);
+const myModDatetime = modDatetime ? new Date(modDatetime) : null;
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "numeric",
+  timeZone: timezone,
 };
 
-// 格式化為中文日期 (例如：2025年12月16日)
-const formattedDate = myDatetime.toLocaleDateString("zh-TW", dateOptions);
+const timeOptions: Intl.DateTimeFormatOptions = {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: timezone,
+};
 ---
 
 <div class={`flex items-center space-x-2 opacity-80 ${className}`}>
@@ -43,8 +44,28 @@ const formattedDate = myDatetime.toLocaleDateString("zh-TW", dateOptions);
       d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"
     ></path>
   </svg>
-
+  <span class="sr-only">Posted on:</span>
   <span class={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
-    {formattedDate}
+    <time datetime={myDatetime.toISOString()}>
+      {/* ✅ 直接指定使用台灣格式 zh-TW */}
+      {myDatetime.toLocaleDateString("zh-TW", dateOptions)}
+    </time>
+    <span aria-hidden="true"> | </span>
+    <span class="sr-only">&nbsp;at&nbsp;</span>
+    <span class="text-nowrap">
+      {/* ✅ 直接指定使用台灣格式 zh-TW */}
+      {myDatetime.toLocaleTimeString("zh-TW", timeOptions)}
+    </span>
   </span>
+  {
+    myModDatetime && (
+      <span class={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
+        (Updated:
+        <time datetime={myModDatetime.toISOString()}>
+          {myModDatetime.toLocaleDateString("zh-TW", dateOptions)}
+        </time>
+        )
+      </span>
+    )
+  }
 </div>

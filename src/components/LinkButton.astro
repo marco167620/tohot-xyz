@@ -2,6 +2,7 @@
 export interface Props {
   href: string;
   className?: string;
+  class?: string; // 🟢 新增：允許接受 class 屬性，這樣其他頁面就不會報錯了
   ariaLabel?: string;
   title?: string;
   disabled?: boolean;
@@ -37,8 +38,7 @@ const {
       aria-label={ariaLabel}
       title={title}
       {...rest} 
-      /* [關鍵修正 2]：這一行 {...rest} 就是魔法所在。
-         它會自動展開變成 target="_blank" rel="noopener noreferrer" */
+      /* [關鍵修正 2]：這一行 {...rest} 就是魔法所在。它會自動展開變成 target="_blank" rel="noopener noreferrer" */
     >
       <slot />
     </a>
