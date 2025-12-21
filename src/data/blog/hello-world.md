@@ -1,6 +1,7 @@
 ---
 author: Marco
 pubDatetime: 2025-12-20T15:30:00Z
+ogImage: /assets/about-cover.jpg
 title: 如果你能用 AI 秒殺作業，那我們為什麼還要上課？
 postSlug: hello-world
 featured: true
@@ -44,4 +45,4 @@ Minerva 大學創辦人 Ben Nelson 說過，教育界正在進行一場「魔鬼
   ></iframe>
 </div>
 
-影片聲音摘要為本學期第 4 課至第 10 課上課簡報於 NotebookLM 產生。增加虛擬人物的目的是為了要有畫面，因此並沒有額外花時間去讓虛擬人物對嘴。這也讓本頻道影片製作方式有成長的空間。請包涵！
+影片聲音摘要為本學期第 3 課至第 10 課上課簡報於 NotebookLM 產生。增加虛擬人物的目的是為了要有畫面，因此並沒有額外花時間去讓虛擬人物對嘴。這也讓本頻道影片製作方式有成長的空間。請包涵！
