@@ -13,7 +13,7 @@ tags:
   - AI
   - 人工智慧
 description: >
-  在未來，只會考試的人會被 AI 取代；但懂得「判斷」與建立「共識」的人，才能駕馭 AI。Web3 技術雖然複雜，這是個機會，也這訓練這種新思維的最佳場域。我們可以選擇繼續假裝學習，也可以試著拿回學習的主權，成為真正的 Builder。
+  在未來，只會考試的人會被 AI 取代；但懂得「判斷」與建立「共識」的人，才能駕馭 AI。Web3 技術雖然複雜，這是個機會，也是訓練這種新思維的最佳場域。我們可以選擇繼續假裝學習，也可以試著拿回學習的主權，成為真正的 Builder。
 ---
 Minerva 大學創辦人 Ben Nelson 說過，教育界正在進行一場「魔鬼交易」(The Devil's Bargain)：學生用 AI 寫作業，老師用 AI 改作業。大家都交差了，但誰也沒學到東西。
 
@@ -36,7 +36,7 @@ Minerva 大學創辦人 Ben Nelson 說過，教育界正在進行一場「魔鬼
 <div class="relative w-full aspect-video overflow-hidden rounded-xl shadow-lg border border-skin-line my-6">
   <iframe
     class="absolute top-0 left-0 w-full h-full"
-    src="https://www.youtube.com/embed/TAKVGFIqIbE"
+    src="https://www.youtube.com/embed/sNnCJU-MvRI"
     title="YouTube video player"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
