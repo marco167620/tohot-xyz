@@ -3,14 +3,14 @@ import satori from "satori";
 import { SITE } from "@/config";
 
 export default async post => {
-  // 🟢 使用 Adobe Source Han Sans TC (思源黑體) - 繁體中文
-  const notoSansTC = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Regular.otf";
+  // 🟢 1. 改用 jsDelivr CDN 的 Noto Sans TC (繁體中文) - TTF 格式
+  // 這是最穩定的格式，能解決 OTF 讀取不到字的問題
+  const fontRegularURL = "https://cdn.jsdelivr.net/fontsource/fonts/noto-sans-tc@latest/chinese-traditional-400-normal.ttf";
+  const fontBoldURL = "https://cdn.jsdelivr.net/fontsource/fonts/noto-sans-tc@latest/chinese-traditional-700-normal.ttf";
 
-  const fontRegular = await fetch(notoSansTC).then((res) => res.arrayBuffer());
-  
-  // 因為這是一個標準字體檔，我們在 Bold 的時候也用同一個檔案即可 (Satori 會嘗試模擬或直接顯示)
-  // 如果要完美粗體，可以另外下載 Bold 版本，但為了省流量先共用
-  const fontBold = fontRegular; 
+  // 🟢 2. 分別下載標準與粗體
+  const fontRegular = await fetch(fontRegularURL).then((res) => res.arrayBuffer());
+  const fontBold = await fetch(fontBoldURL).then((res) => res.arrayBuffer());
 
   return satori(
     {
@@ -23,6 +23,8 @@ export default async post => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          // 🟢 3. 強制指定使用我們下載的字體名稱
+          fontFamily: '"Noto Sans TC"',
         },
         children: [
           {
