@@ -1,17 +1,16 @@
+// @ts-nocheck
 import satori from "satori";
 import { SITE } from "@/config";
 
-// 🔴 移除原本的 Google Fonts 載入器，我們改用直連
-// import loadGoogleFonts from "../loadGoogleFont";
-
 export default async post => {
-  // 🟢 1. 定義中文字體網址 (思源黑體)
-  const notoSansTC =
-    "https://github.com/google/fonts/raw/main/ofl/notosanstc/NotoSansTC-Regular.ttf";
+  // 🟢 使用 Adobe Source Han Sans TC (思源黑體) - 繁體中文
+  const notoSansTC = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Regular.otf";
 
-  // 🟢 2. 下載字體 (Regular 和 Bold 都用同一個檔案以節省頻寬)
   const fontRegular = await fetch(notoSansTC).then((res) => res.arrayBuffer());
-  const fontBold = await fetch(notoSansTC).then((res) => res.arrayBuffer());
+  
+  // 因為這是一個標準字體檔，我們在 Bold 的時候也用同一個檔案即可 (Satori 會嘗試模擬或直接顯示)
+  // 如果要完美粗體，可以另外下載 Bold 版本，但為了省流量先共用
+  const fontBold = fontRegular; 
 
   return satori(
     {
@@ -140,7 +139,6 @@ export default async post => {
       width: 1200,
       height: 630,
       embedFont: true,
-      // 🟢 3. 這裡修改了字體設定，不再呼叫 loadGoogleFonts
       fonts: [
         {
           name: "Noto Sans TC",
@@ -151,7 +149,7 @@ export default async post => {
         {
           name: "Noto Sans TC",
           data: fontBold,
-          weight: 700, // 雖然檔案一樣，但我們標記它為粗體
+          weight: 700,
           style: "normal",
         },
       ],
