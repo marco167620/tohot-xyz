@@ -38,4 +38,4 @@ jobs:
           # 上傳到 FTP 的根目錄 (通常 publish@tohot.xyz 已經對應到網站資料夾了)
           server-dir: ./public_html/
           # 安全設定 (若遇到憑證問題可調整，目前先設為 false 確保相容性)
-          strict: false
+        
