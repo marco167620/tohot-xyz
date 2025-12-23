@@ -1,6 +1,6 @@
 ---
-// ✅ 我們移除對 config 的依賴，這樣就絕對不會報錯了
-// import { LOCALE } from "../config";
+// ✅ 重新引入 SITE 以取得我們在 config.ts 設定的 Asia/Taipei
+import { SITE } from "../config";
 
 interface Props {
   pubDatetime: string | Date;
@@ -10,7 +10,14 @@ interface Props {
   timezone?: string;
 }
 
-const { pubDatetime, modDatetime, size = "sm", className, timezone } = Astro.props;
+// ✅ 設定預設值為 SITE.timezone (即 Asia/Taipei)
+const { 
+  pubDatetime, 
+  modDatetime, 
+  size = "sm", 
+  className, 
+  timezone = SITE.timezone 
+} = Astro.props;
 
 const myDatetime = new Date(pubDatetime);
 const myModDatetime = modDatetime ? new Date(modDatetime) : null;
@@ -19,13 +26,14 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "short",
   day: "numeric",
-  timeZone: timezone,
+  timeZone: timezone, // 現在這裡保證會有 "Asia/Taipei"
 };
 
 const timeOptions: Intl.DateTimeFormatOptions = {
   hour: "2-digit",
   minute: "2-digit",
-  timeZone: timezone,
+  hour12: false, // 建議設為 false 以符合 24 小時制習慣
+  timeZone: timezone, // 現在這裡保證會有 "Asia/Taipei"
 };
 ---
 
@@ -47,13 +55,13 @@ const timeOptions: Intl.DateTimeFormatOptions = {
   <span class="sr-only">Posted on:</span>
   <span class={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
     <time datetime={myDatetime.toISOString()}>
-      {/* ✅ 直接指定使用台灣格式 zh-TW */}
+      {/* ✅ 使用 zh-TW 搭配強制指定的台北時區 */}
       {myDatetime.toLocaleDateString("zh-TW", dateOptions)}
     </time>
     <span aria-hidden="true"> | </span>
     <span class="sr-only">&nbsp;at&nbsp;</span>
     <span class="text-nowrap">
-      {/* ✅ 直接指定使用台灣格式 zh-TW */}
+      {/* ✅ 使用 zh-TW 搭配強制指定的台北時區 */}
       {myDatetime.toLocaleTimeString("zh-TW", timeOptions)}
     </span>
   </span>
