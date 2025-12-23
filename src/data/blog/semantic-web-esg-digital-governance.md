@@ -13,7 +13,7 @@ tags:
   - 語意網
   - Gemini
   - 數位資產
-ogImage: "/public/astropaper-og-old.jpg"
+ogImage: "/public/astropaper-og.jpg"
 description: 探索如何透過 Gemini 類型的 AI Agent 與 Web3 的去中心化架構，解決 ESG 的信任危機，並將個體參與轉化為具備價值的數位資產。
 ---
 ### 實驗室筆記：從技術革命走向價值治理
