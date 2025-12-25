@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tohot.xyz/sitemap-index.xml

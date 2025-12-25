@@ -69,8 +69,8 @@ html[data-theme="dark"] {
 }
 
 @layer components {
-  /* 強制覆寫 h3 樣式：移除斜體並設定顏色 */
-  .prose h3, h3 {
+  /* 強制覆寫 h2 樣式：移除斜體並設定顏色 */
+  .prose h2, h2 {
     font-style: normal;
     color: #2E8B57;
   }
