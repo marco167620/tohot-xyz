@@ -2,7 +2,7 @@
 title: 實踐永續個人品牌：Web 3.0 的 ESG 數位形象力
 author: 馬可博士
 pubDatetime: 2025-12-26T18:00:00+08:00
-ogImage: "/public/sustainable-web3-esg-branding.jpg"
+ogImage: "/sustainable-web3-esg-branding.jpg"
 featured: true
 draft: false
 tags:
