@@ -2,7 +2,7 @@
 title: 實踐永續個人品牌：Web 3.0 的 ESG 數位形象力
 author: 馬可博士
 pubDatetime: 2025-12-26T18:00:00+08:00
-ogImage: "/public/sustainable-web3-esg-branding.jpg"
+ogImage: "/public/sustainable-esg-branding.jpg"
 featured: true
 draft: false
 tags:
@@ -20,7 +20,7 @@ description:
 
 舉例來說，當我們每天早上決定進⾏運動時，這是「健康」和「⾃我掌控」的作⽤；⽽選擇與朋友聚會或是⼀⼈獨處，反映出我們對「愛與被愛」或「⾃由」的回應。透過這些⽇常的⼩決定，我們能逐漸了解內⼼深層的渴望，並找到最符合⾃⼰需求的⽣活⽅式。
 
-![實踐永續 ESG 個人品牌](/public/sustainable-web3-esg-branding.jpg)
+![實踐永續 ESG 個人品牌](/public/sustainable-esg-branding.jpg)
 
 ## ⽇常活動中的慾望實踐
 
