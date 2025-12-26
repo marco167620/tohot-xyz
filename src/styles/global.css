@@ -69,9 +69,15 @@ html[data-theme="dark"] {
 }
 
 @layer components {
-  /* 強制覆寫 h2 樣式：移除斜體並設定顏色 */
+  /* 這是你目前的設定 (H2 是綠色) */
   .prose h2, h2 {
     font-style: normal;
     color: #2E8B57;
+  }
+  /* --- H3 標題：藍色 (層次感) --- */
+  .prose h3, h3 {
+    font-style: normal;
+    color: #005a8f;
+    font-size: 100% rem;
   }
 }
