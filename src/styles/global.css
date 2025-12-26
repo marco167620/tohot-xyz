@@ -77,7 +77,7 @@ html[data-theme="dark"] {
   /* --- H3 標題：藍色 (層次感) --- */
   .prose h3, h3 {
     font-style: normal;
-    color: #005a8f;
+    color: #0467a0;
     font-size: 100% rem;
   }
 }
