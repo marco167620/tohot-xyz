@@ -20,7 +20,10 @@ description:
 
 舉例來說，當我們每天早上決定進⾏運動時，這是「健康」和「⾃我掌控」的作⽤；⽽選擇與朋友聚會或是⼀⼈獨處，反映出我們對「愛與被愛」或「⾃由」的回應。透過這些⽇常的⼩決定，我們能逐漸了解內⼼深層的渴望，並找到最符合⾃⼰需求的⽣活⽅式。
 
-![實踐永續 ESG 個人品牌](/sustainable-esg-branding.jpg)
+<figure>
+  <img src="/sustainable-esg-branding.jpg" alt="實踐永續 ESG 個人品牌" />
+  <figcaption>▲ Web 3.0 時代，品牌的基礎目標 (成長、關注、成功) 並未改變，改變的是我們實踐它的「數位治理」方式。 </figcaption>
+</figure>
 
 ## ⽇常活動中的慾望實踐
 
