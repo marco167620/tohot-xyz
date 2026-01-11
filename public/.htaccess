@@ -1,1 +1,16 @@
-ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- 規則 A：強制移除 www (針對主域名) ---
+  # 如果網址是 www.tohot.xyz，就轉去 https://tohot.xyz
+  RewriteCond %{HTTP_HOST} ^www\.tohot\.xyz [NC]
+  RewriteRule ^(.*)$ https://tohot.xyz/$1 [L,R=301]
+
+  # --- 規則 B：強制使用 HTTPS ---
+  # 如果目前不是 HTTPS 連線，就轉去 https 開頭的網址
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # --- 針對 Astro 的 404 頁面處理 ---
+  ErrorDocument 404 /404.html
+</IfModule>
