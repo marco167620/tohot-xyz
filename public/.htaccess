@@ -1,4 +1,3 @@
-<IfModule mod_rewrite.c>
   RewriteEngine On
 
   # --- 規則 A：強制移除 www (針對主域名) ---
@@ -13,4 +12,3 @@
   
   # --- 針對 Astro 的 404 頁面處理 ---
   ErrorDocument 404 /404.html
-</IfModule>
