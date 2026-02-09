@@ -11,6 +11,7 @@ tags:
   - Gemini
   - 自動化
   - 省錢攻略
+ogImage: "/assets/lobster-become-two-scorpions.jpg"
 description: Clawdbot 改名 OpenClawd，我的 AI 助理也分工為天蠍一號與二號。本文揭露如何利用 Gemini Web (大腦) 與 OpenClawd API  (手腳) 的黃金分工策略，建置既聰明又省錢的自動化工作流程。
 ---
 
