@@ -37,7 +37,7 @@ description: "寫出應用程式變容易了，但是要成為一名開發者的
 
 在這個協作過程中，AI 展現了它作為「超級工匠」的強大能力，負責語法與基礎代碼的鋪設。而開發者則轉變為「立法者」，核心價值在於運用對**數位治理**的專長，進行審閱和邊界設定，注入規則與安全機制，將程式碼升級為具備約束力與公信力的數位制度。
 
-![智慧合約與數位治理示意圖](/src/assets/images/smart-contract-governance.jpg)
+![智慧合約與數位治理示意圖](/public/smart-contract-governance.jpg)
 
 ## 第二篇章：時光遺產的修復
 **任務：老舊進銷存系統遷移 (VSCode + Gemini Code Assist)**
@@ -50,7 +50,7 @@ description: "寫出應用程式變容易了，但是要成為一名開發者的
 
 這已不是在寫新的程式，而是一場**考驗開發者經驗的精密手術**。AI 是效率極高的考古學家，負責解讀與清理舊有邏輯，而我是負責判斷下刀的位置及後果的醫師。我運用積累的經驗來判斷修復的連鎖效應，確保修正某個問題之後，不會因為 AI 的局部視角而埋下更複雜的隱患。
 
-![AI擔任翻譯官一起協作](/src/assets/images/legacy-code-refactor.jpg)
+![AI擔任翻譯官一起協作](/public/legacy-code-refactor.jpg)
 
 ## 第三篇章：人機合一的演化
 **任務：AI 戰情中心 (Clawdbot + Antigravity)**
@@ -65,7 +65,7 @@ description: "寫出應用程式變容易了，但是要成為一名開發者的
 
 開發者轉身為「系統造物主」與「設計師」，不再專注於程式碼細節，而是以純粹的邏輯與架構制定願景。AI 是將抽象意圖具體化的強力夥伴，而開發者的核心價值在於以「老闆」的角色，全盤考量成本與效能，引導 AI 夥伴完成從概念到實踐的整個藍圖。
 
-![Scorpio II Center 戰情中心介面](/src/assets/images/scorpio-ii-center.png)*Scorpio II Center 戰情中心*
+![Scorpio II Center 戰情中心介面](/public/scorpio-ii-center.png)*Scorpio II Center 戰情中心*
 
 
 ## 開發者的物種演化
@@ -86,4 +86,4 @@ Vibe Coding 會讓強者越強。
 ## 總結論
 在這個新時代，開發者必須知道大樓該怎麼蓋 (架構、治理，以及成本與效能)，徹底蛻變為一個掌握全局以及能設計藍圖的「系統建築師」。AI 是我們強大的執行大軍，但能否實現宏大願景，完全取決於我們**掌握藍圖與領導的協作能力**。
 
-![未來的開發者轉身為系統造物主與總工程師](/src/assets/images/developer-evolution.jpg)
+![未來的開發者轉身為系統造物主與總工程師](/public/developer-evolution.jpg)
