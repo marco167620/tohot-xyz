@@ -25,7 +25,7 @@ Clawdbot 正式更名為 **OpenClawd**，而我的 AI 團隊也迎來了新編�
 
 為了讓它們乖乖聽話，我制定了嚴格的 **遊戲規則**：預設由「二號」回應指令，「一號」保持靜默，除非被特別點名。其實主要的目的是為了 **分散資源** 和 **控制成本**。
 
-![龍蝦變身雙天蠍Agent](/public/lobster-become-two-scorpions.jpg)
+![龍蝦變身雙天蠍Agent](/lobster-become-two-scorpions.jpg)
 
 ## 代理型 AI 的成本難題：如何用 Token 換算最大效益？
 
