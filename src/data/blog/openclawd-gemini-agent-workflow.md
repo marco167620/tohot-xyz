@@ -1,5 +1,5 @@
 ---
-author: Marco
+author: 馬可博士
 pubDatetime: 2026-02-09T10:00:00+08:00
 title: Clawdbot 正名 OpenClawd：雙天蠍 Agent 實戰省錢攻略
 postSlug: openclawd-gemini-agent-workflow
@@ -11,7 +11,7 @@ tags:
   - Gemini
   - 自動化
   - 省錢攻略
-ogImage: "/src/assets/lobster-become-two-scorpions.jpg"
+ogImage: "/public/lobster-become-two-scorpions.jpg"
 description: Clawdbot 改名 OpenClawd，我的 AI 助理也分工為天蠍一號與二號。本文揭露如何利用 Gemini Web (大腦) 與 OpenClawd API  (手腳) 的黃金分工策略，建置既聰明又省錢的自動化工作流程。
 ---
 
@@ -25,7 +25,7 @@ Clawdbot 正式更名為 **OpenClawd**，而我的 AI 團隊也迎來了新編�
 
 為了讓它們乖乖聽話，我制定了嚴格的 **遊戲規則**：預設由「二號」回應指令，「一號」保持靜默，除非被特別點名。其實主要的目的是為了 **分散資源** 和 **控制成本**。
 
-![龍蝦變身雙天蠍Agent](../../assets/lobster-become-two-scorpions.jpg)
+![龍蝦變身雙天蠍Agent](/src/assets/images/lobster-become-two-scorpions.jpg)
 
 ## 代理型 AI 的成本難題：如何用 Token 換算最大效益？
 
