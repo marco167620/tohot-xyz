@@ -1,6 +1,6 @@
 ---
 author: 馬可博士
-pubDatetime: 2026-02-18T11:25:00Z
+pubDatetime: 2026-02-18T11:25:00+08:00
 title: 筆記：Gemini 為什麼能讀取我的雲端硬碟，但不能讀取我的 YouTube 觀看紀錄？
 featured: true
 draft: false

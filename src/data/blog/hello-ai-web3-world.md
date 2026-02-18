@@ -1,6 +1,6 @@
 ---
 author: 馬可博士
-pubDatetime: 2025-12-20T15:30:00Z
+pubDatetime: 2025-12-20T15:30:00+08:00
 title: 如果你能用 AI 秒殺作業，那我們為什麼還要上課？
 featured: false
 draft: false
