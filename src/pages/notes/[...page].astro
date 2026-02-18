@@ -12,16 +12,16 @@ import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getCollection("blog", ({ data }) => !data.draft && !data.note);
+  const posts = await getCollection("blog", ({ data }) => !data.draft && data.note);
   return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout title={`Notes | ${SITE.title}`}>
   <Header />
-  <Main pageTitle="文章列表" pageDesc="這是所有文章列表。">
+  <Main pageTitle="筆記列表" pageDesc="這是所有筆記列表。">
     <ul>
       {page.data.map((data: any) => <Card {...data} />)}
     </ul>
