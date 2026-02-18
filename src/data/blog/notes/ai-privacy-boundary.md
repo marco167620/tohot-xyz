@@ -14,6 +14,7 @@ tags:
   - 數位助理
   - AI 日常
   - Google
+ogImage: "/marco-lab-og.jpg"
 description: 這聽起來確實非常矛盾：「雲端硬碟裡有我的商業機密和合約，Gemini 都能看；YouTube 只是我看過什麼影片，它反而不能看？這算哪門子的隱私標準？它的回應值得記錄下來。或許哪一天會改變。
 note: true
 ---
