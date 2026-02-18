@@ -9,7 +9,19 @@ const breadcrumbList = currentUrlPath.split("/").slice(1);
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
 if (breadcrumbList[0] === "posts") {
-  breadcrumbList.splice(0, 2, `所有文章 (page ${breadcrumbList[1] || 1})`);
+  breadcrumbList.splice(0, 2, `所有觀察 (第 ${breadcrumbList[1] || 1} 頁)`);
+}
+
+if (breadcrumbList[0] === "notes") {
+  breadcrumbList.splice(0, 2, `所有筆記 (第 ${breadcrumbList[1] || 1} 頁)`);
+}
+
+if (breadcrumbList[0] === "about") {
+  breadcrumbList[0] = "緣起";
+}
+
+if (breadcrumbList[0] === "search") {
+  breadcrumbList[0] = "搜尋";
 }
 
 // if breadcrumb is Home > Tags > [tag] > [page] <etc>
@@ -18,7 +30,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
   breadcrumbList.splice(
     1,
     3,
-    `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
+    `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(第 " + breadcrumbList[2] + " 頁)"}`
   );
 }
 ---
