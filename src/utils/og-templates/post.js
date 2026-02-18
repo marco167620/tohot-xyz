@@ -6,7 +6,7 @@ export default async post => {
   // 🟢 使用 Adobe 官方倉庫的 Source Han Sans TC (思源黑體) OTF 版本
   // 經過測試，這個連結是有效的
   const fontRegularURL = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Regular.otf";
-  const fontBoldURL    = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Bold.otf";
+  const fontBoldURL = "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/TraditionalChinese/SourceHanSansTC-Bold.otf";
 
   // 下載字體
   const fontRegular = await fetch(fontRegularURL).then((res) => res.arrayBuffer());
@@ -17,7 +17,8 @@ export default async post => {
       type: "div",
       props: {
         style: {
-          background: "#fefbfb",
+          backgroundImage: `url(${new URL(SITE.ogImage, SITE.website).href})`,
+          backgroundSize: "100% 100%",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -35,7 +36,7 @@ export default async post => {
                 top: "-1px",
                 right: "-1px",
                 border: "4px solid #000",
-                background: "#ecebeb",
+                background: "rgba(236, 235, 235, 0.8)",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",
@@ -51,7 +52,7 @@ export default async post => {
             props: {
               style: {
                 border: "4px solid #000",
-                background: "#fefbfb",
+                background: "rgba(254, 251, 251, 0.9)",
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
