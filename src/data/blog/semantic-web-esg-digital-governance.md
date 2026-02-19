@@ -2,7 +2,7 @@
 author: 馬可博士
 pubDatetime: 2025-12-23T12:00:00+08:00
 title: 當語意網遇上 ESG：利用 AI 建立數位治理新共識
-featured: true
+featured: false
 draft: false
 tags:
   - AI
