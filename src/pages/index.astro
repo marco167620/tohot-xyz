@@ -42,30 +42,39 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <h2 class="mt-4 text-lg font-medium leading-relaxed text-skin-secondary sm:mt-6 sm:text-xl">
-        探索 Web3、AI 與 ESG 的永續新共識。
-      </h2>
-      <p>
-        這是一個開放的「實驗室」。無論您是學生、開發者、研究者，還是關心未來的管理者和決策者，誠摯邀請您加入這場關於未來的對話與實驗。
-      </p>
-      <p class="mt-2">
-        我是馬可博士。請前往
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="/about/"
-        >
-        我的頁面
-        </LinkButton> 來關注我們的動態。
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">社群連結:</div>
-            <Socials />
-          </div>
-        )
-      }
+      <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+        <img
+          src="/drMarcoLee-pro.png"
+          class="h-[150px] w-[150px] shrink-0 object-cover shadow-lg"
+          alt="drMarcoLee-pro Logo"
+        />
+        <div>
+          <h2 class="mt-4 text-lg font-medium leading-relaxed text-skin-secondary sm:mt-0 sm:text-xl">
+            探索 Web3、AI 與 ESG 的永續新共識。
+          </h2>
+          <p>
+            這是一個開放的「實驗室」。無論您是學生、開發者、研究者，還是關心未來的管理者和決策者，誠摯邀請您加入這場關於未來的對話與實驗。
+          </p>
+          <p class="mt-2">
+            我是馬可博士。請前往
+            <LinkButton
+              className="underline decoration-dashed underline-offset-4 hover:text-accent"
+              href="/about/"
+            >
+            我的頁面
+            </LinkButton> 來關注我們的動態。
+          </p>
+          {
+            // only display if at least one social link is enabled
+            SOCIALS.length > 0 && (
+              <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
+                <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">社群連結:</div>
+                <Socials />
+              </div>
+            )
+          }
+        </div>
+      </div>
     </section>
 
     <Hr />
