@@ -21,7 +21,7 @@ tags:
   - Cloudflare
   - Firebase
   - GitHub
-ogImage: "/public/images/decentralized-architecture-business-growth.jpg"
+ogImage: "/public/images/ai-revolution-shattering-server-dependencies.jpg"
 description: 在 AI 技術高速發展的今日，傳統 CMS 架構已成為發布瓶頸。雖然現代化架構帶來了極大的自由與優勢，但它並非沒有挑戰。本文探討如何透過「架構解耦」與「靜態分散式」部署，將創作重心回歸內容與程式碼，實現真正的數位資產自主掌控。
 ---
 
