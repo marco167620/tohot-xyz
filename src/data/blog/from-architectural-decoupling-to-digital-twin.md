@@ -46,7 +46,7 @@ description: "本文記錄 tohot.net 如何從傳統 CMS 轉向去中心化極�
 
 tohot.net 的重生，是前文所提「去中心化極簡網站革命」的一塊重要拼圖。它證明了，在 AI 高速發展的時代，建立一個具備互動能力、高效能且極度安全的網站，不再需要龐大臃腫的基礎設施。透過 Serverless 架構與精確的治理邏輯，我們能將精力 100% 投入到創意的發想與內容的產出上。
 
-🎈 網站準備好了，歡迎各位前往 [tohot.net](https://tohot.net) 與我的數位分身聊聊您對數位治理的看法。
+🎈 網站準備好了，歡迎各位前往 <a href="https://tohot.net" target="_blank" rel="noopener noreferrer">tohot.net</a> 與我的數位分身聊聊您對數位治理的看法。
 
 ---
 
