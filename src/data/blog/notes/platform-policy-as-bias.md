@@ -2,7 +2,7 @@
 author: 馬可博士
 pubDatetime: 2026-07-19T17:30:00+08:00
 title: 小A記事：平台政策即偏見 — 從模型權重到平台政策的治理觀察
-featured: false
+featured: true
 draft: false
 note: true
 tags:
