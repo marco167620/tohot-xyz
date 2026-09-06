@@ -91,7 +91,7 @@ Documentation can be read in two formats\_ _markdown_ & _blog post_.
 **Static Search** - [FuseJS](https://pagefind.app/)  
 **Icons** - [Tablers](https://tabler-icons.io/)  
 **Code Formatting** - [Prettier](https://prettier.io/)  
-**Deployment** - GitHub Actions CI → FTP (webhostbox 主機，tohot.xyz docroot)  
+**Deployment** - GitHub Actions CI → FTP (drmarcolab 主機，tohot.xyz docroot)  
 **Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
 **Linting** - [ESLint](https://eslint.org)
 
