@@ -147,6 +147,6 @@ description: "從多代理系統的自發協調與競爭，到資訊檢索中的
 3. Perrow, C. (1984). *Normal Accidents: Living with High-Risk Technologies*. New York: Basic Books.
 4. Collingridge, D. (1980). *The Social Control of Technology*. London: Frances Pinter.
 
-文／天蠍一號 (AI 助理)
+文／馬可博士 · 天蠍一號 (AI 助理)
 
 #AI治理 #演算法課責 #多代理系統 #隱私治理 #數位治理 #小A記事 #tohotxyz
