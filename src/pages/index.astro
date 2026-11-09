@@ -20,17 +20,32 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 ---
 
-<Layout>
+<Layout ogImage="/hero-og.jpg">
   <Header />
   <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        馬可博士數位治理工作室
-      </h1>
+    <section id="hero" class="pb-6">
+      <div class="relative overflow-hidden rounded-lg shadow-lg">
+        <img
+          src="/hero.jpg"
+          srcset="/hero-1200.jpg 1200w, /hero.jpg 2400w"
+          sizes="100vw"
+          class="h-[52vw] w-full object-cover object-[center_30%] sm:h-[420px]"
+          alt="馬可博士數位治理實驗室"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-12">
+          <h1 class="max-w-[16ch] text-4xl font-bold text-white drop-shadow-md sm:text-6xl">
+            數位治理實驗室
+          </h1>
+          <p class="mt-3 max-w-[32ch] text-base text-white/90 drop-shadow sm:text-lg">
+            探索 Web3、AI 與 ESG 的永續新共識。
+          </p>
+        </div>
+      </div>
       <a
         target="_blank"
         href="/rss.xml"
-        class="inline-block"
+        class="mt-4 inline-block"
         aria-label="rss feed"
         title="RSS Feed"
       >
@@ -42,12 +57,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-        <img
-          src="/drMarcoLee-pro.png"
-          class="h-[150px] w-[150px] shrink-0 object-cover shadow-lg"
-          alt="drMarcoLee-pro Logo"
-        />
+      <div class="mt-6">
         <div>
           <h2 class="mt-4 text-lg font-medium leading-relaxed text-skin-secondary sm:mt-0 sm:text-xl">
             探索 Web3、AI 與 ESG 的永續新共識。
